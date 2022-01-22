@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "aplicativo para gerenciamento financeiro",
   "productName": "finanD",
-  "author": "Jairo Leite <jairomakay@gmail.com>",
+  "author": "Jairo Leite",
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0"
