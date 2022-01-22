@@ -20,6 +20,7 @@ module.exports = configure(function (ctx) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
     boot: [
+      'supabase',
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -38,12 +39,16 @@ module.exports = configure(function (ctx) {
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
       'roboto-font', // optional, you are not bound to it
-      'material-icons', // optional, you are not bound to it
+      'material-icons', // optional, you are not bound to it 
     ],
 
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
-      vueRouterMode: 'hash', // available values: 'hash', 'history'
+      vueRouterMode: 'history', // available values: 'hash', 'history'
+      env: {
+        SUPABASE_URL: 'url',
+        SUPABASE_KEY: 'senha'
+      },
 
       // transpile: false,
       // publicPath: '/',
@@ -64,7 +69,7 @@ module.exports = configure(function (ctx) {
 
       // https://quasar.dev/quasar-cli/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpack (/* chain */) {
+      chainWebpack(/* chain */) {
         //
       },
     },
@@ -80,7 +85,21 @@ module.exports = configure(function (ctx) {
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
     framework: {
-      config: {},
+      config: {
+        brand: {
+          primary: '#50a3a2',
+          secondary: '#5bcdf8',
+          accent: '#0f1544',
+
+          dark: '#1d1d1d',
+
+          positive: '#21BA45',
+          negative: '#C10015',
+          info: '#31CCEC',
+          warning: '#F2C037',
+          border: '#e6e6e6'
+        }
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -93,7 +112,8 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Dialog',
+        'Notify']
     },
 
     // animations: 'all', // --- includes all animations
@@ -108,12 +128,12 @@ module.exports = configure(function (ctx) {
       // manualPostHydrationTrigger: true,
 
       prodPort: 3000, // The default port that the production server should use
-                      // (gets superseded if process.env.PORT is specified at runtime)
+      // (gets superseded if process.env.PORT is specified at runtime)
 
       maxAge: 1000 * 60 * 60 * 24 * 30,
-        // Tell browser when a file from the server should expire from cache (in ms)
+      // Tell browser when a file from the server should expire from cache (in ms)
 
-      chainWebpackWebserver (/* chain */) {
+      chainWebpackWebserver(/* chain */) {
         //
       },
 
@@ -130,13 +150,13 @@ module.exports = configure(function (ctx) {
 
       // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
       // if using workbox in InjectManifest mode
-      chainWebpackCustomSW (/* chain */) {
+      chainWebpackCustomSW(/* chain */) {
         //
       },
 
       manifest: {
-        name: `finanJ`,
-        short_name: `finanJ`,
+        name: `finanD`,
+        short_name: `finanD`,
         description: `aplicativo para gerenciamento financeiro`,
         display: 'standalone',
         orientation: 'portrait',
@@ -206,13 +226,13 @@ module.exports = configure(function (ctx) {
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackMain (/* chain */) {
+      chainWebpackMain(/* chain */) {
         // do something with the Electron main process Webpack cfg
         // extendWebpackMain also available besides this chainWebpackMain
       },
 
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
-      chainWebpackPreload (/* chain */) {
+      chainWebpackPreload(/* chain */) {
         // do something with the Electron main process Webpack cfg
         // extendWebpackPreload also available besides this chainWebpackPreload
       },

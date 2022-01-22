@@ -1,51 +1,34 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
-    </q-item-section>
-
-    <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>
-        {{ caption }}
-      </q-item-label>
-    </q-item-section>
-  </q-item>
+  <q-tab :name="routeName" :icon="icon" @click="clickTab" />
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
-  name: 'EssentialLink',
+  name: "EssentialLink",
   props: {
-    title: {
+    routeName: {
       type: String,
-      required: true
-    },
-
-    caption: {
-      type: String,
-      default: ''
-    },
-
-    link: {
-      type: String,
-      default: '#'
+      default: "",
     },
 
     icon: {
       type: String,
-      default: ''
-    }
-  }
-})
+      default: "",
+    },
+  },
+
+  setup(props) {
+    const router = useRouter();
+
+    // redireciona para página
+    const clickTab = () => {
+      router.push({ name: props.routeName });
+    };
+
+    return { clickTab };
+  },
+});
 </script>
