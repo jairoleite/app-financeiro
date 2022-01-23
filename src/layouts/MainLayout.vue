@@ -14,7 +14,7 @@
           v-bind="link"
         />
         <!-- tab para sair da aplicação -->
-        <q-tab icon="logout" @click="handleLogout" />
+        <q-tab icon="logout" label="sair" @click="handleLogout" />
       </q-tabs>
     </q-footer>
 
@@ -31,10 +31,17 @@ const linksList = [
   {
     icon: "home",
     routeName: "me",
+    label: "home",
+  },
+  {
+    icon: "category",
+    routeName: "category",
+    label: "categoria",
   },
   {
     icon: "settings",
     routeName: "config",
+    label: "configuração",
   },
 ];
 
@@ -58,7 +65,7 @@ export default defineComponent({
     //  componentes quasar
     const $q = useQuasar();
     //logout do usuário
-    const { ogout } = useAuthUser();
+    const { logout } = useAuthUser();
 
     const handleLogout = async () => {
       $q.dialog({

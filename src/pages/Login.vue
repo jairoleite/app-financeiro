@@ -107,7 +107,6 @@ export default defineComponent({
       Loading.show();
       try {
         await login(form.value);
-        notifySuccess("Login successfully!");
         router.push({ name: "me" });
       } catch (error) {
         notifyError("Usuário ou senha incorreto!");

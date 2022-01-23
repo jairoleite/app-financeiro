@@ -47,7 +47,7 @@ module.exports = configure(function (ctx) {
       vueRouterMode: 'history', // available values: 'hash', 'history'
       env: {
         SUPABASE_URL: 'url',
-        SUPABASE_KEY: 'senha'
+        SUPABASE_KEY: 'token'
       },
 
       // transpile: false,

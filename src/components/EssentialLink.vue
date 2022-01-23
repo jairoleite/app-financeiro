@@ -1,5 +1,7 @@
 <template>
-  <q-tab :name="routeName" :icon="icon" @click="clickTab" />
+  <q-tab :name="routeName" :icon="icon" @click="clickTab">
+    <span>{{ label }}</span>
+  </q-tab>
 </template>
 
 <script>
@@ -15,6 +17,11 @@ export default defineComponent({
     },
 
     icon: {
+      type: String,
+      default: "",
+    },
+
+    label: {
       type: String,
       default: "",
     },
